@@ -1,96 +1,83 @@
-# Face Authentication (Face Verification) – Task 2
+TASK - 2 
+Face Authentication (Face Verification)
 
-## 📌 Overview
+1.Overview:
+This project is a simple Face Authentication system developed using Python and FastAPI.  
+The purpose of this project is to verify whether two face images belong to the same person or not.
+The system detects faces from the uploaded images, extracts face embeddings using a pretrained InsightFace model, and compares them using cosine similarity.
 
-This project implements a **Face Authentication system** using Python and FastAPI.
-It verifies whether two input face images belong to the same person.
+2.Features:
+- Upload two face images
+- Detect faces automatically
+- Extract face embeddings
+- Compare similarity between faces
+- Return similarity score and verification result
+- FastAPI API implementation
 
-The system performs:
+3.Technologies Used
+- Python
+- FastAPI
+- OpenCV
+- InsightFace
+- NumPy
+- Scikit-learn
 
-* Face detection
-* Feature (embedding) extraction
-* Similarity computation
-* Final verification result
-
----
-
-## 🚀 Features
-
-* Accepts two face images
-* Detects faces in both images
-* Extracts embeddings using InsightFace (ArcFace)
-* Computes similarity using cosine similarity
-* Returns:
-
-  * Verification result: **same person / different person**
-  * Similarity score
-  * Bounding boxes of detected faces
-
----
-
-## 🧠 Tech Stack
-
-* Python
-* FastAPI
-* InsightFace (pretrained model)
-* OpenCV
-* NumPy
-* Scikit-learn
-
----
-
-## 📂 Project Structure
-
-```
+4.Project Structure
 face-auth/
-│
-├── train.py          # Model setup (training file)
-├── test.py           # Load model + prediction function
-├── app.py            # FastAPI service
-├── requirements.txt
-├── README.md
-```
 
----
+train.py
+test.py
+app.py
+requirements.txt
+README.md
 
-## ⚙️ Installation
+5. Installation
 
-```bash
+Create virtual environment:
+python -m venv venv
+
+Activate environment:
+
+Windows
+venv\Scripts\activate
+
+
+Linux / Mac
+bash
+source venv/bin/activate
+
+Install required packages:
 pip install -r requirements.txt
-```
 
-Microsoft Visual C++ 14.0 or greater is required. Get it with "Microsoft C++ Build Tools": https://visualstudio.microsoft.com/visual-cpp-build-tools/
+6.Running the Application
 
----
-
-## ▶️ Running the Application
-
-### 1. Run FastAPI server
-
-```bash
+Start FastAPI server:
 uvicorn app:app --reload
-```
 
-### 2. Open API Docs
+Open browser and go to:
 
-```
-http://127.0.0.1:8000/docs
-```
+You can test the API directly from the Swagger UI.
 
-### 3. Test the API
 
-* Use `/verify/` endpoint
-* Upload two face images
-* Get verification result
+
+7. API Endpoint
+
+POST /verify/
+
+Upload two face images and the API returns:
+
+- Verification result
+- Similarity score
+- Bounding boxes of detected faces
 
 ---
 
-## 📥 Example API Response
+8. Example Response
 
 ```json
 {
   "verification_result": "same person",
-  "similarity_score": 0.78,
+  "similarity_score": 0.81,
   "face1_bbox": [120, 80, 300, 350],
   "face2_bbox": [100, 60, 280, 330]
 }
@@ -98,96 +85,46 @@ http://127.0.0.1:8000/docs
 
 ---
 
-## 📌 How It Works
+9. How It Works
 
-1. **Face Detection**
-
-   * Detect faces using InsightFace
-
-2. **Embedding Extraction**
-
-   * Convert faces into numerical vectors (embeddings)
-
-3. **Similarity Calculation**
-
-   * Compute cosine similarity between embeddings
-
-4. **Decision**
-
-   * If similarity > 0.5 → same person
-   * Else → different person
+1. Face detection is performed on both images
+2. Face embeddings are extracted using InsightFace
+3. Cosine similarity is calculated between embeddings
+4. Based on the similarity score, the system decides whether both faces belong to the same person
 
 ---
 
-## 📁 Files Description
 
-### train.py
+Notes
 
-* Initializes pretrained InsightFace model
-* Acts as training step (model setup)
-
-### test.py
-
-* Contains:
-
-  * Model loading
-  * Face embedding extraction
-  * Verification function
-
-### app.py
-
-* FastAPI service
-* Accepts image input
-* Returns prediction results
+- Only the first detected face is used
+- Similarity threshold is set to `0.5`
+- Works on CPU
 
 ---
 
-## 📊 Model Used
+10. requirements.txt
 
-* InsightFace (buffalo_l)
-* Based on ArcFace embeddings
-* Pretrained model (no custom training required)
 
----
+fastapi
+uvicorn
+opencv-python
+numpy
+scikit-learn
+insightface
+python-multipart
+onnxruntime
 
-## 🧪 Notes
 
-* Only the first detected face is used
-* Threshold for similarity is set to **0.5** (can be tuned)
-* Works on CPU (GPU optional)
 
----
 
-## 🎯 Submission Checklist
+11. Future Improvements
 
-* [x] Training file (train.py)
-* [x] Testing file (test.py)
-* [x] FastAPI implementation
-* [x] requirements.txt
-* [x] README.md
-* [x] Sample images (optional)
+- Multi-face support
+- Face alignment
+- Liveness detection
+- Database integration
+- GPU optimization
 
----
 
-## 💡 Future Improvements
 
-* Multi-face support
-* Face alignment
-* Database integration (face login system)
-* Liveness detection (anti-spoofing)
-* GPU optimization
-
----
-
-## 😄 Fun Note
-
-Face embedding is like:
-
-> “Aadhaar number for your face” 😎
-> If two match → same person!
-
----
-
-## 👤 Author
-
-Puneet Kansal
