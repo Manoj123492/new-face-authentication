@@ -1,3 +1,37 @@
+TASK - 1
+Amazon Product Scraper (Python)
+
+1. Overview
+
+This project is a simple Amazon product scraper built using Python, Requests, and BeautifulSoup.
+
+The script takes a product name as input, searches it on Amazon India, and extracts product details such as:
+
+- Title
+- Price
+- Rating
+- Image URL
+- Ad/Organic status
+
+The scraped data is saved into a CSV file with a timestamp.
+
+2.Features
+
+- Dynamic product search (user input)
+- Scrapes multiple pages
+- Extracts important product details
+- Saves data into CSV format
+- Basic error handling included
+
+3. Technologies Used
+
+- Python
+- Requests
+- BeautifulSoup
+- CSV module
+- Datetime module
+
+
 TASK - 2 
 Face Authentication (Face Verification)
 
